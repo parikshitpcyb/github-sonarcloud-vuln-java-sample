@@ -3,15 +3,24 @@ version: 2.1
 jobs:
   sonarcloud_scan:
     docker:
-      - image: 'circleci/openjdk:11-jdk'
+      - image: cimg/openjdk:11.0
     steps:
       - checkout
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
+  secrets_scan:
+    docker:
+      - image: cimg/python:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: sudo pip install trufflehog
+      - run: trufflehog --max_depth 1 ~/repo
 
 workflows:
   security_scan:
     jobs:
       - sonarcloud_scan:
           context: SonarCloud_15May23
+      - secrets_scan
