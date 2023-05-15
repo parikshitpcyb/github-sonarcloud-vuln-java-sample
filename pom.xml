@@ -18,7 +18,6 @@
 		<java.version>1.8</java.version>
 		<sonar.organization>parikshitpcyb</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.projectKey>${{ env.REPOSITORY_NAME }}</sonar.projectKey>
 		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 		<sonar.qualitygate.timeout>300</sonar.qualitygate.timeout>
 	</properties>
