@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  sonarcloud_scan:
+    docker:
+      - image: 'circleci/openjdk:11-jdk'
+    steps:
+      - checkout
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar
+
+workflows:
+  security_scan:
+    jobs:
+      - sonarcloud_scan:
+          context: SonarCloud_15May23
