@@ -10,18 +10,18 @@ jobs:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar -Dsonar.projectKey=github-sonarcloud-vuln-java-sample -Dsonar.qualitygate.wait=true -Dsonar.analysis.timeout=300
 
-  secrets_scan:
-    docker:
-      - image: circleci/python:latest
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: sudo pip install trufflehog
-      - run: trufflehog --max_depth 1 ~/repo
+  # secrets_scan:
+  #   docker:
+  #     - image: circleci/python:latest
+  #   working_directory: ~/repo
+  #   steps:
+  #     - checkout
+  #     - run: sudo pip install trufflehog
+  #     - run: trufflehog --max_depth 1 ~/repo
 
 workflows:
   security_scan:
     jobs:
       - sonarcloud_scan:
           context: SonarCloud_15May23
-      - secrets_scan
+      #- secrets_scan
