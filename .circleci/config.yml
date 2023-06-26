@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   sonarcloud_scan:
     docker:
-      - image: 'cimg/openjdk:11.0'
+      - image: 'cimg/node:20.3'
     steps:
       - checkout
       - run:
